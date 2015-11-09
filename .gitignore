@@ -6,6 +6,10 @@
 *.user
 *.userosscache
 *.sln.docstates
+TweetHandlerOut/
+TweetPublisherOut/
+HandlerOut/
+PublisherOut/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
