@@ -8,8 +8,8 @@ namespace TweetrSearchWeb.Extensions
     public static class HtmlExtensions
     {
         private const string UrlRegEx = @"((http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?)";
-        private const string UserNameRegEx = "(@)((?:[a-zæøå0-9-_]*))";
-        private const string HashTagRegEx = "(#)((?:[a-zæøå0-9-_]*))";
+        private const string UserNameRegEx = "(@)((?:[a-zæøåäöë0-9-_]*))";
+        private const string HashTagRegEx = "(#)((?:[a-zæøåäöë0-9-_]*))";
 
         public static MvcHtmlString DisplayWithLinksFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
         {

@@ -13,10 +13,31 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 540px;
 }
 
 /* preserve newline in tweet messages */
 blockquote p {
     white-space: pre-wrap;
+}
+.container{
+    display: flex
+}
+
+/* bootstrap compact tweeks */
+body {
+    padding-top: 0;
+}
+
+div.page-header {
+    margin-top: 0;
+}
+div.bs-component {
+    padding: 0 15px;
+}
+
+/* other */
+.badge.large {
+    font-size: 1em;
+    vertical-align: middle
 }

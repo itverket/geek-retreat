@@ -41,6 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureManagement", "AzureMan
 		AzureManagement\tweet-publish-subscribe.json = AzureManagement\tweet-publish-subscribe.json
 	EndProjectSection
 EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "TweetrSearchWebService", "TweetrSearchWebService\TweetrSearchWebService.ccproj", "{CE09B34B-2035-4EC4-9D64-78203420813F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{F6CEC90B-9B89-4D74-A8A1-F6F19CFB6318}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6CEC90B-9B89-4D74-A8A1-F6F19CFB6318}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6CEC90B-9B89-4D74-A8A1-F6F19CFB6318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE09B34B-2035-4EC4-9D64-78203420813F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE09B34B-2035-4EC4-9D64-78203420813F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE09B34B-2035-4EC4-9D64-78203420813F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE09B34B-2035-4EC4-9D64-78203420813F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,35 +1,36 @@
 ﻿@using TweetrSearchWeb.Extensions
-@model Entities.Twitter.SearchIndex.FlattendTweet
+@model Microsoft.Azure.Search.Models.SearchResult<Entities.Twitter.SearchIndex.FlattendTweet>
 
-<div class="panel panel-info">
-    <div class="panel-heading">
-        <h3 class="panel-title"><a href="#" onclick="document.getElementById('username').value='@Model.Username'; document.getElementById('hashTags').value=null; document.forms[0].submit(); return false;">&#64;@Model.Username</a> tweeted at @Model.CreatedAt.Value.ToLongDateString(), @Model.CreatedAt.Value.ToLongTimeString()</h3>
-    </div>
+
+@*<div class="panel panel-primary">*@
+    @*<div class="panel-heading">
+        <h3 class="panel-title"><a href="#" onclick="document.getElementById('username').value='@Model.Document.Username'; document.getElementById('hashTags').value=null; document.forms[0].submit(); return false;">&#64;@Model.Document.Username</a> tweeted at @Model.Document.CreatedAt.Value.ToShortDateString(), @Model.Document.CreatedAt.Value.ToShortTimeString()<span class="pull-right">#@Model.Score</span></h3>
+    </div>*@
     <div class="panel-body">
         <div class="col-xs-12">
-            <blockquote><p>@Html.DisplayWithLinksFor(model => model.TweetMessage.Trim())</p></blockquote>
+            <blockquote><p>@Html.DisplayWithLinksFor(model => model.Document.TweetMessage.Trim())</p></blockquote>
             <p class="text-info">
-                Retweeted <span class="badge">@Model.RetweetCount</span> times
+                Retweeted <span class="badge">@Model.Document.RetweetCount</span> times
             </p>
             <div class="col-xs-12">
-                @if (!string.IsNullOrEmpty(Model.WeatherId))
+                @if (!string.IsNullOrEmpty(Model.Document.WeatherId))
                 {
                     <div>
-                        <i class="owf owf-@Model.WeatherId owf-5x owf-pull-left owf-border"></i>
-                        <strong>@Model.WeatherDescription</strong><br>
-                        Temp @Model.Temperature°C @Model.WeatherTitle (@Model.WeatherDescription)<br>
-                        Wind @Model.WindSpeed m/s Humidity @Model.Humidity %
+                        <i class="owf owf-@Model.Document.WeatherId owf-5x owf-pull-left owf-border"></i>
+                        <strong>@Model.Document.WeatherDescription</strong><br>
+                        Temp @Model.Document.Temperature°C @Model.Document.WeatherTitle (@Model.Document.WeatherDescription)<br>
+                        Wind @Model.Document.WindSpeed m/s Humidity @Model.Document.Humidity %
                     </div>
                 }
             </div>
             <div class="col-xs-12">
-                @if (Model.Urls != null && Model.Urls.Count > 0)
+                @if (Model.Document.Urls != null && Model.Document.Urls.Count > 0)
                 {
-                    <a href="@Model.Urls[0]">
-                        <img class="img-rounded img-responsive center-block" width="628" height="356" data-src="http://api.screenshotlayer.com/api/capture?access_key=f6d964a834f620454cb1a272d4eda7b0&url=@Model.Urls[0]&viewport=1440x720" scr="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
+                    <a href="@Model.Document.Urls[0]">
+                        <img class="img-rounded img-responsive center-block" width="628" height="356" data-src="http://api.screenshotlayer.com/api/capture?access_key=f6d964a834f620454cb1a272d4eda7b0&url=@Model.Document.Urls[0]&viewport=1440x720" scr="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
                     </a>
                 }
             </div>
         </div>
     </div>
-</div>
+</@*div*@>

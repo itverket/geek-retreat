@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="TweetrSearchWebService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="TweetrSearchWeb">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="SearchServiceApiKey" value="C10F3A0A73E30B5AB9483413EF846E97" />
+      <Setting name="SearchServiceName" value="tjsearch" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>
