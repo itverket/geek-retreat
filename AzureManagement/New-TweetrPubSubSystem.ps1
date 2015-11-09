@@ -36,15 +36,15 @@ $currentDir = (Get-Item -Path ".\" -Verbose).FullName
 $handlerOutpath = "$currentDir\HandlerOut\"	
 $publisherOutpath = "$currentDir\PublisherOut\"	
 	
-# try{	
-# 	Write-Host "Creating new Azure resource group - $resourceGroupName `n Using template $templateFile"
-# 	. .\Create-GRResourceGroup -groupname $groupname
-# }Catch{
-# 	$errorMessage = $_.Exception.Message
-# 	$errorMessage
-# }																										   
-# 
-# 
+try{	
+	Write-Host "Creating new Azure resource group - $resourceGroupName `n Using template $templateFile"
+	. .\Create-GRResourceGroup -groupname $groupname
+}Catch{
+	$errorMessage = $_.Exception.Message
+	$errorMessage
+}																										   
+
+
 try{
 	Write-Host "Packaging handler project"						
 	. .\Package-CloudServiceProject -csprojpath $handlerProjPath -out $handlerOutpath
@@ -69,13 +69,14 @@ $publishDirHandler = "$currentDir\HandlerOut\app.publish"
 $publishDirPublisher = "$currentDir\PublisherOut\app.publish"
 	
 try{
-	Write-Host "1"
 	. .\Set-ProjectCloudConfigurations.ps1 -groupname $grouptag -publishDir $publishDirHandler -workerName "TweetHandler" -storageAccountName $storageAccountName
-	Write-Host "1"
-	
-	# . .\Set-ProjectCloudConfigurations.ps1 -groupname $grouptag -publishDir $publishDirHandler -workerName "SearchIndexWorker" -storageAccountName $storageAccountName -searchName $searchName -s
-	# Write-Host "1"
-	# 
+
+	try{
+		. .\Set-ProjectCloudConfigurations.ps1 -groupname $grouptag -publishDir $publishDirHandler -workerName "SearchIndexWorker" -storageAccountName $storageAccountName -searchName $searchName -s
+	}Catch{
+		$errorMessage = $_.Exception.Message
+		"No SearchIndexer role found:   $errorMessage"	
+	}
 	. .\Set-ProjectCloudConfigurations.ps1 -groupname $grouptag -publishDir $publishDirPublisher -workerName "TweetrPublisher" -storageAccountName $storageAccountName
 }Catch{
 	$errorMessage = $_.Exception.Message
