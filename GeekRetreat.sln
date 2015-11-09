@@ -30,6 +30,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Entities.Package\global.json = Entities.Package\global.json
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureManagement", "AzureManagement", "{D781B6DB-2397-4EC7-AE5A-2BFCBE797E88}"
+	ProjectSection(SolutionItems) = preProject
+		AzureManagement\Create-GRResourceGroup.ps1 = AzureManagement\Create-GRResourceGroup.ps1
+		AzureManagement\New-TweetrPubSubSystem.ps1 = AzureManagement\New-TweetrPubSubSystem.ps1
+		AzureManagement\New-TweetrPubSubSystem2.ps1 = AzureManagement\New-TweetrPubSubSystem2.ps1
+		AzureManagement\Package-CloudServiceProject.ps1 = AzureManagement\Package-CloudServiceProject.ps1
+		AzureManagement\Publish-CloudServiceFromPackage.ps1 = AzureManagement\Publish-CloudServiceFromPackage.ps1
+		AzureManagement\Set-ProjectCloudConfigurations.ps1 = AzureManagement\Set-ProjectCloudConfigurations.ps1
+		AzureManagement\tweet-publish-subscribe.json = AzureManagement\tweet-publish-subscribe.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
