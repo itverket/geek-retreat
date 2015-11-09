@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="TweetPublishService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="TweetrPublisher">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="TweetsPerMinute" value="60" />
+      <Setting name="StorageConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="TweetrConnectionString" value="DefaultEndpointsProtocol=https;AccountName=tweetrstorage;AccountKey=hVMvakDaQLu0hADPKwsHE7HV89nlIGCQLeq2rKJBPxntJY5VQdcYOzMaVGocw/o/WwBHJpC1ewazSr56TnEbmw==;BlobEndpoint=https://tweetrstorage.blob.core.windows.net/;TableEndpoint=https://tweetrstorage.table.core.windows.net/;QueueEndpoint=https://tweetrstorage.queue.core.windows.net/;FileEndpoint=https://tweetrstorage.file.core.windows.net/" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>

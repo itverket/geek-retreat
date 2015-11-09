@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{11C177EF-3360-4EBF-883C-5D17C8FE63CA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Entities</RootNamespace>
+    <AssemblyName>Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Entities.Package\Twitter\Api\Geocode.cs">
+      <Link>Twitter\Api\Geocode.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Api\GeocodeUnit.cs">
+      <Link>Twitter\Api\GeocodeUnit.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Api\ResultType.cs">
+      <Link>Twitter\Api\ResultType.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Api\SearchTweetsRequest.cs">
+      <Link>Twitter\Api\SearchTweetsRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Api\SearchTweetsResult.cs">
+      <Link>Twitter\Api\SearchTweetsResult.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\RateLimiting\RateLimit.cs">
+      <Link>Twitter\RateLimiting\RateLimit.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\RateLimiting\RateLimitApplication.cs">
+      <Link>Twitter\RateLimiting\RateLimitApplication.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\RateLimiting\RateLimitContext.cs">
+      <Link>Twitter\RateLimiting\RateLimitContext.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\RateLimiting\RateLimitResources.cs">
+      <Link>Twitter\RateLimiting\RateLimitResources.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\RateLimiting\RateLimitSearch.cs">
+      <Link>Twitter\RateLimiting\RateLimitSearch.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\RateLimiting\RateLimitStatus.cs">
+      <Link>Twitter\RateLimiting\RateLimitStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\SearchIndex\FlattendTweet.cs">
+      <Link>Twitter\SearchIndex\FlattendTweet.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Tweet\BoundingBox.cs">
+      <Link>Twitter\Tweet\BoundingBox.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Tweet\Contributor.cs">
+      <Link>Twitter\Tweet\Contributor.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Tweet\Coordinate.cs">
+      <Link>Twitter\Tweet\Coordinate.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Tweet\CurrentUserRetweet.cs">
+      <Link>Twitter\Tweet\CurrentUserRetweet.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Tweet\Hashtag.cs">
+      <Link>Twitter\Tweet\Hashtag.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Tweet\Media.cs">
+      <Link>Twitter\Tweet\Media.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Tweet\MediaSize.cs">
+      <Link>Twitter\Tweet\MediaSize.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Tweet\MediaSizes.cs">
+      <Link>Twitter\Tweet\MediaSizes.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Tweet\Place.cs">
+      <Link>Twitter\Tweet\Place.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Tweet\Tweet.cs">
+      <Link>Twitter\Tweet\Tweet.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Tweet\TweetEntities.cs">
+      <Link>Twitter\Tweet\TweetEntities.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Tweet\TweetUrl.cs">
+      <Link>Twitter\Tweet\TweetUrl.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Tweet\User.cs">
+      <Link>Twitter\Tweet\User.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\Tweet\UserMention.cs">
+      <Link>Twitter\Tweet\UserMention.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Twitter\TwitterConstants.cs">
+      <Link>Twitter\TwitterConstants.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Weather\CurrentWeatherResult.cs">
+      <Link>Weather\CurrentWeatherResult.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Weather\FiveDaysForecastResult.cs">
+      <Link>Weather\FiveDaysForecastResult.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Weather\HistoricWeatherResult.cs">
+      <Link>Weather\HistoricWeatherResult.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Weather\Result.cs">
+      <Link>Weather\Result.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Weather\SixteenDaysForecastResult.cs">
+      <Link>Weather\SixteenDaysForecastResult.cs</Link>
+    </Compile>
+    <Compile Include="..\Entities.Package\Weather\WeatherResult.cs">
+      <Link>Weather\WeatherResult.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,35 @@
+﻿@using TweetrSearchWeb.Extensions
+@model Entities.Twitter.SearchIndex.FlattendTweet
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title"><a href="#" onclick="document.getElementById('username').value='@Model.Username'; document.getElementById('hashTags').value=null; document.forms[0].submit(); return false;">&#64;@Model.Username</a> tweeted at @Model.CreatedAt.Value.ToLongDateString(), @Model.CreatedAt.Value.ToLongTimeString()</h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-xs-12">
+            <blockquote><p>@Html.DisplayWithLinksFor(model => model.TweetMessage.Trim())</p></blockquote>
+            <p class="text-info">
+                Retweeted <span class="badge">@Model.RetweetCount</span> times
+            </p>
+            <div class="col-xs-12">
+                @if (!string.IsNullOrEmpty(Model.WeatherId))
+                {
+                    <div>
+                        <i class="owf owf-@Model.WeatherId owf-5x owf-pull-left owf-border"></i>
+                        <strong>@Model.WeatherDescription</strong><br>
+                        Temp @Model.Temperature°C @Model.WeatherTitle (@Model.WeatherDescription)<br>
+                        Wind @Model.WindSpeed m/s Humidity @Model.Humidity %
+                    </div>
+                }
+            </div>
+            <div class="col-xs-12">
+                @if (Model.Urls != null && Model.Urls.Count > 0)
+                {
+                    <a href="@Model.Urls[0]">
+                        <img class="img-rounded img-responsive center-block" width="628" height="356" data-src="http://api.screenshotlayer.com/api/capture?access_key=f6d964a834f620454cb1a272d4eda7b0&url=@Model.Urls[0]&viewport=1440x720" scr="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

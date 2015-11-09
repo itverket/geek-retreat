@@ -1,0 +1,33 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "messagingUnits": {
+            "type": "string"
+        },
+        "sku": {
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "apiVersion": "2014-09-01",
+            "name": "[parameters('name')]",
+            "location": "[parameters('location')]",
+            "type": "Microsoft.ServiceBus/namespaces",
+            "properties": {
+                "MessagingSku":  "[parameters('sku')]",
+                "MessagingSKUPlan": {
+                    MessagingUnits: "[parameters('messagingUnits')]",
+                    SKU: "[parameters('sku')]"
+                }
+            }
+        }
+    ]
+}

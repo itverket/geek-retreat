@@ -1,0 +1,82 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "tweetrCloudServiceName": {
+            "type": "string"
+        },
+        "tweetHandlerCloudServiceName": {
+            "type": "string"
+        },
+        "serviceBusName": {
+            "type": "string"
+        },
+        "tweetrStorageAccountName": {
+            "type": "string"
+        },
+        "tweetHandlerStorageAccountName": {
+            "type": "string"
+        },
+        "searchName": {
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "apiVersion": "2014-06-01",
+            "name": "[parameters('tweetrCloudServiceName')]",
+            "location": "North Europe",
+            "type": "Microsoft.ClassicCompute/domainNames"
+        },
+        {
+            "apiVersion": "2014-06-01",
+            "name": "[parameters('tweetHandlerCloudServiceName')]",
+            "location": "North Europe",
+            "type": "Microsoft.ClassicCompute/domainNames"
+        },
+        {
+            "apiVersion": "2014-09-01",
+            "name": "[parameters('serviceBusName')]",
+            "location": "North Europe",
+            "type": "Microsoft.ServiceBus/namespaces",
+            "properties": {
+                "MessagingSku": "2",
+                "MessagingSKUPlan": {
+                    "MessagingUnits": "1",
+                    "SKU": "2"
+                }
+            }
+        },
+        {
+            "apiVersion": "2015-05-01-preview",
+            "name": "[parameters('tweetrStorageAccountName')]",
+            "location": "North Europe",
+            "type": "Microsoft.Storage/storageAccounts",
+            "properties": {
+                "accountType": "Standard_LRS"
+            }
+        },
+        {
+            "apiVersion": "2015-05-01-preview",
+            "name": "[parameters('tweetHandlerStorageAccountName')]",
+            "location": "North Europe",
+            "type": "Microsoft.Storage/storageAccounts",
+            "properties": {
+                "accountType": "Standard_LRS"
+            }
+        },
+        {
+            "apiVersion": "2015-02-28",
+            "name": "[parameters('searchName')]",
+            "type": "Microsoft.Search/searchServices",
+            "location": "North Europe",
+            "properties": {
+                "sku": {
+                    "name": "standard"
+                },
+                "replicaCount": 1,
+                "partitionCount": 1
+            }
+        }
+    ]
+}

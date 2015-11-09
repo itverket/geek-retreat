@@ -1,0 +1,167 @@
+﻿@using Microsoft.Azure.Search.Models
+@model DocumentSearchResponse<Entities.Twitter.SearchIndex.FlattendTweet>
+
+@{
+    ViewBag.Title = "Search";
+}
+<div class="container">
+    <div class="bs-docs-section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <h1 id="page-title">Geek Retreat 2015</h1>
+                </div>
+            </div>
+        </div>
+
+        @if (@ViewBag.errorMessage != null)
+        {
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="alert alert-dismissible alert-error">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <h4>Error!</h4>
+                        <p>@ViewBag.errorMessage.</p>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="jumbotron">
+                        <h1>Geek Search</h1>
+                        <form action="/Home/Search" method="get"  id="search-form">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="control-label" for="query">Text</label>
+                                    <div class="input-group col-md-6">
+                                        <input type="search" name="query" id="query" value="@ViewBag.searchString" autocomplete="off" class="form-control input-lg">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary btn-lg" type="button">Search</button>
+                                        </span>
+                                    </div>
+                                    <!-- for filters-->
+                                    <input type="hidden" name="filter" id="filter" value="@ViewBag.filter"/>
+                                    <input type="hidden" name="sort" id="sort" value="@ViewBag.sort"/>
+                                    <input type="hidden" name="retweetCountFrom" id="retweetCountFrom" value="@ViewBag.retweetCountFrom" />
+                                    <input type="hidden" name="retweetCountTo" id="retweetCountTo" value="@ViewBag.retweetCountTo"/>
+                                    <input type="hidden" name="hashTags" id="hashTags" value="@ViewBag.hashTags"/>
+                                    <input type="hidden" name="username" id="username" value="@ViewBag.username" />
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            if (@Model?.Results != null && @Model.Results.Count > 0)
+            {
+
+                <div class="bs-docs-section">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="page-header">
+                                <h1 id="searchresults">Search Results</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="bs-component">
+                                <p class="text-success">
+                                    Found <span class="badge">@Model.Results.Count</span> tweets matching your request
+                                </p>
+                                <div class="panel panel-success">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Sorting</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="breadcrumb">
+                                            <li class="active"><a href="#" onclick="document.getElementById('sort').value = null; document.forms[0].submit(); return false;">by relevance</a></li>
+                                            <li><a href="#" onclick="document.getElementById('sort').value = 'createdAt'; document.forms[0].submit(); return false;">by date</a></li>
+                                            <li><a href="#" onclick="document.getElementById('sort').value = 'retweetCount'; document.forms[0].submit(); return false;">by retweet count</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="panel panel-success">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Filtering</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="breadcrumb">
+                                            <li class="active"><a href="#" onclick="document.getElementById('filter').value = null;  document.forms[0].submit(); return false;">default</a></li>
+                                            <li><a href="#" onclick="document.getElementById('filter').value = 'weather'; document.forms[0].submit(); return false;">with weather</a></li>
+                                            <li><a href="#" onclick="document.getElementById('filter').value = 'hashTags'; document.forms[0].submit(); return false;">with hashtags</a></li>
+                                            <li><a href="#" onclick="document.getElementById('filter').value = null; document.getElementById('hashTags').value = null; document.getElementById('username').value = null; document.getElementById('retweetCountFrom').value = null; document.getElementById('retweetCountTo').value = null; document.forms[0].submit(); return false;">clear all</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <h2 id="facets">Facets (<a href="#" onclick="document.getElementById('retweetCountFrom').value = null; document.getElementById('retweetCountTo').value = null; document.getElementById('hashTags').value = null; document.forms[0].submit(); return false;">Clear</a>)</h2>
+                            <div class="bs-component">
+                                @foreach (var facetResult in @Model.Facets)
+                                {
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">@facetResult.Key</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul class="list-group">
+                                            @foreach (var facet in facetResult.Value)
+                                            {
+                                                <li class="list-group-item">
+                                                    <span class="badge">@facet.Count</span>
+                                                    @if (facet.Type == FacetType.Range)
+                                                    {
+                                                        <a href="#" onclick="document.getElementById('retweetCountFrom').value=@(facet.From ?? 0); document.getElementById('retweetCountTo').value=@(facet.To ?? 0); document.forms[0].submit(); return false;">@facet.Value (@(facet.From ?? 0) - @(facet.To ?? "more"))</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="#" onclick="document.getElementById('hashTags').value='@facet.Value'; document.forms[0].submit(); return false;">@facet.Value</a>
+                                                    }
+                                                </li>
+                                            }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <h2 id="tweets">Twets</h2>
+                            <div class="bs-component">
+                                @foreach (var flattenedTweet in Model.Results.Select(r => r.Document))
+                                {
+                                    @Html.DisplayFor(tweet => flattenedTweet, "FlattenedTweet")
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(function() {
+            $("#query").autocomplete({ source: "/home/suggest" });
+        });
+        $('#breadcrumb li a').on('click', function() {
+            $('li.active').removeClass('active');
+            $(this).parent('li').addClass('active');
+        });
+        $(document).ready(function() { $("img").unveil(1000); });
+        $("a img").mouseover(function() {
+            $(this).css({ 'box-shadow': '5px 5px 5px #ccc', 'border' : '1px solid #999' });
+        }).mouseleave(function() {
+            $(this).css({ 'box-shadow': '0 0 0 #ccc', 'border': '1px solid #fff' });
+        });
+    </script>
+}

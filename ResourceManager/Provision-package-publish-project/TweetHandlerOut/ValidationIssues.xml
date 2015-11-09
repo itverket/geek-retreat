@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ValidationIssue Include="SearchIndexWorker|SearchIndexWorker|WAT190">
+      <ProjectName>SearchIndexWorker</ProjectName>
+      <FilenameWithExtension>SearchIndexWorker</FilenameWithExtension>
+      <Code>WAT190</Code>
+      <FileFullPath>SearchIndexWorker</FileFullPath>
+      <WATMessage>True</WATMessage>
+      <Arguments>SearchIndexWorker;.NET Framework 4.5.2</Arguments>
+      <HelpKeyword>WATValidationIssueWarning</HelpKeyword>
+    </ValidationIssue>
+    <ValidationIssue Include="TweetEventHandler|TweetEventHandler|WAT190">
+      <ProjectName>TweetEventHandler</ProjectName>
+      <FilenameWithExtension>TweetEventHandler</FilenameWithExtension>
+      <Code>WAT190</Code>
+      <FileFullPath>TweetEventHandler</FileFullPath>
+      <WATMessage>True</WATMessage>
+      <Arguments>TweetEventHandler;.NET Framework 4.5.2</Arguments>
+      <HelpKeyword>WATValidationIssueWarning</HelpKeyword>
+    </ValidationIssue>
+    <ValidationIssue Include="TweetrSearchWeb|TweetrSearchWeb|WAT190">
+      <ProjectName>TweetrSearchWeb</ProjectName>
+      <FilenameWithExtension>TweetrSearchWeb</FilenameWithExtension>
+      <Code>WAT190</Code>
+      <FileFullPath>TweetrSearchWeb</FileFullPath>
+      <WATMessage>True</WATMessage>
+      <Arguments>TweetrSearchWeb;.NET Framework 4.5.2</Arguments>
+      <HelpKeyword>WATValidationIssueWarning</HelpKeyword>
+    </ValidationIssue>
+  </ItemGroup>
+</Project>

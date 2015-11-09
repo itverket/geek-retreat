@@ -1,0 +1,66 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "tweetPublishServiceName": {
+      "type": "string"
+    },
+    "tweetHandlerServiceName": {
+      "type": "string"
+    },
+    "tweetHandlerStorageAccountName": {
+      "type": "string"
+    },
+    "searchName": {
+      "type": "string"
+    },
+    "deploymentStorageName": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2014-06-01",
+      "name": "[parameters('tweetPublishServiceName')]",
+      "location": "North Europe",
+      "type": "Microsoft.ClassicCompute/domainNames"
+    },
+    {
+      "apiVersion": "2014-06-01",
+      "name": "[parameters('tweetHandlerServiceName')]",
+      "location": "North Europe",
+      "type": "Microsoft.ClassicCompute/domainNames"
+    },
+    {
+      "apiVersion": "2015-05-01-preview",
+      "name": "[parameters('tweetHandlerStorageAccountName')]",
+      "location": "North Europe",
+      "type": "Microsoft.Storage/storageAccounts",
+      "properties": {
+        "accountType": "Standard_LRS"
+      }
+    },
+    {
+      "apiVersion": "2014-06-01",
+      "name": "[parameters('deploymentStorageName')]",
+      "type": "Microsoft.ClassicStorage/StorageAccounts",
+      "location": "North Europe",
+      "properties": {
+        "accountType": "Standard_LRS"
+      }
+    },
+    {
+      "apiVersion": "2015-02-28",
+      "name": "[parameters('searchName')]",
+      "type": "Microsoft.Search/searchServices",
+      "location": "North Europe",
+      "properties": {
+        "sku": {
+          "name": "free"
+        },
+        "replicaCount": 1,
+        "partitionCount": 1
+      }
+    }
+  ]
+}
