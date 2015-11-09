@@ -7,8 +7,8 @@ Param([string]$publishsettings,
       # [string]$package = ".\TweetPublishService.cspkg",
       [string]$config,
       [string]$package,
-      [string]$slot="Production"),
-      [string]$groupname
+      [string]$slot="Production",
+      [string]$groupname)
       
 
  
