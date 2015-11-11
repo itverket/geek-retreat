@@ -44,7 +44,6 @@ try{
 	$errorMessage
 }																										   
 
-
 try{
 	Write-Host "Packaging handler project"						
 	. .\Package-CloudServiceProject -csprojpath $handlerProjPath -out $handlerOutpath
@@ -63,8 +62,6 @@ try{
 	$errorMessage
 }
 
-
-
 $publishDirHandler = "$currentDir\HandlerOut\app.publish"
 $publishDirPublisher = "$currentDir\PublisherOut\app.publish"
 	
@@ -82,7 +79,6 @@ try{
 	$errorMessage = $_.Exception.Message
 	$errorMessage
 }
-
 
 $subscription = (Get-AzureSubscription -Current).SubscriptionId
 $tweetPublisherConfig = "$publishDirPublisher\ServiceConfiguration.Cloud.cscfg"
