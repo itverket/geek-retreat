@@ -33,7 +33,9 @@ namespace Web.Services
                     OrderBy = new List<string> { "CreatedAt" },
                     Filter = string.IsNullOrEmpty(username)
                         ? null
-                        : $"Username eq '{username}'"
+                        : $"Username eq '{username}'",
+                    Facets = new List<string> { "HashTags"},
+                    IncludeTotalResultCount = true
                 });
 
             return new AzureSearchResult

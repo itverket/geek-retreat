@@ -23,10 +23,13 @@
                         <div data-bind="with: Criteria">
                             <div data-bind="text: previousSearchValues"></div>
                         </div>
+                        <div data-bind="visible: countVisible">
+                            Count: <span data-bind="text: SearchResult.Count"></span>
+                        </div>
                     </div>
                 </div>
                 <div>
-                    <div data-bind="foreach: SearchResult.ResultList">
+                    <div data-bind="foreach: SearchResult.Tweets">
                         <div data-bind="template: { name: 'tweet-template', data: $data }"></div>
                     </div>
                 </div>
@@ -69,13 +72,17 @@
     <script type="text/javascript">
     // Set up main structure of model. Dont need to specify how elements in ResultList look like
     // This will be done when we get the list of tweets, using updateFromModel.
-    var mainModel = {
-        Criteria : {
-            Username: "",
-            Query: ""
-        },
-        SearchResult: {
-            ResultList: []
+        var mainModel = {
+            Criteria: {
+                Username: "",
+                Query: ""
+            },
+            SearchResult: {
+                Facets: {
+                    HashTags: []
+                },
+                Tweets: [],
+                Count: ""
         }
     };
 

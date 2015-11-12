@@ -16,6 +16,8 @@ function TweetrSearchViewModel(self) {
         geek.ajaxRequest(self.simpleSearchSettings(tweet));
     };
 
+    self.countVisible = ko.observable(false);
+
     self.simpleSearchSettings = function (tweet) {
         return {
             url: "/api/search",
@@ -26,8 +28,9 @@ function TweetrSearchViewModel(self) {
 
     self.onSearchSuccessFunction = function (data) {
         // update resultlist with results from search.
-        ko.viewmodel.updateFromModel(self.SearchResult.ResultList, data);
+        ko.viewmodel.updateFromModel(self.SearchResult, data);
         self.Criteria.setPreviousSearchValues();
+        self.countVisible(true);
     };
 
     self.getCriteriaAsModel = function (tweet) {
@@ -47,7 +50,7 @@ function createTweetrSearchViewModel(model) {
         extend: {
             "{root}": TweetrSearchViewModel,
             "{root}.SearchResult": SearchResultViewModel,
-            "{root}.SearchResult.ResultList[i]": TweetViewModel,
+            "{root}.SearchResult.Tweets[i]": TweetViewModel,
             "{root}.Criteria": SearchCriteriaViewModel
         }
     });
