@@ -3,6 +3,7 @@ using Microsoft.Azure.Search;
 using Microsoft.Azure.Search.Models;
 using Microsoft.Framework.Configuration;
 using System.Collections.Generic;
+using Web.ViewModels;
 
 namespace Web.Services
 {
@@ -22,7 +23,7 @@ namespace Web.Services
             _indexClient = serviceClient.Indexes.GetClient(tweetIndexName);
         }
 
-        public virtual DocumentSearchResponse<FlattendTweet> Search(
+        public virtual AzureSearchResult Search(
             string query, string username = null)
         {
             var result = _indexClient.Documents.Search<FlattendTweet>(
@@ -35,7 +36,12 @@ namespace Web.Services
                         : $"Username eq '{username}'"
                 });
 
-            return result;
+            return new AzureSearchResult
+            {
+                Count = result.Count,
+                Facets = result.Facets,
+                Tweets = result.Results
+            };
         }
     }
 }
