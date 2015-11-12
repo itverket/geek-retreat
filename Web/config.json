@@ -1,7 +1,7 @@
 ﻿{
   "AppSettings": {
-    "SearchServiceName": "SERVICE_NAME",
-    "SearchServiceApiKey": "API_KEY",
-    "TweetIndexName": "tweets"
+    "SearchServiceName": "tjsearch",
+    "SearchServiceApiKey": "C10F3A0A73E30B5AB9483413EF846E97",
+    "TweetIndexName": "asp5tweets"
   }
 }

@@ -28,7 +28,7 @@ namespace TweetrSearchWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult Search(double? retweetCountFrom, double? retweetCountTo, string sort = null, string filter = null, string query = "", string hashTags = null, string username = null, int skip = 0,int top = 50, string scoringProfile = null,  string scoringParameter = null)
+        public ActionResult Search(double? retweetCountFrom, double? retweetCountTo, string sort = null, string filter = null, string query = "", string hashTags = null, string username = null, int skip = 0,int top = 10, string scoringProfile = null,  string scoringParameter = null)
         {
             ViewBag.searchString = query;
             ViewBag.hashTags = hashTags;
@@ -116,13 +116,21 @@ namespace TweetrSearchWeb.Controllers
 
             if (!IsNullOrEmpty(filter))
             {
-                if (filter == "weather")
+                if (filter == "oslo")
                 {
-                    spFilter += Any(spFilter) + "Temperature gt -100";
+                    spFilter += Any(spFilter) + "geo.distance(TweetCoordinates, geography'POINT(10.7150777 59.8939225)') lt 3";
                 }
-                if (filter == "hashTags" && IsNullOrEmpty(hashTags))
+                if (filter == "cope" && IsNullOrEmpty(hashTags))
                 {
-                    spFilter += Any(spFilter) + "HashTags/any()";
+                    spFilter += Any(spFilter) + "geo.distance(TweetCoordinates, geography'POINT(12.5258197 55.6713108)') lt 3";
+                }
+                if (filter == "goth")
+                {
+                    spFilter += Any(spFilter) + "geo.distance(TweetCoordinates, geography'POINT(11.753603 57.702061)') lt 3";
+                }
+                if (filter == "asga" && IsNullOrEmpty(hashTags))
+                {
+                    spFilter += Any(spFilter) + "geo.distance(TweetCoordinates, geography'POINT(10.477919 59.3500386)') lt 3";
                 }
             }
             return spFilter;
@@ -139,21 +147,6 @@ namespace TweetrSearchWeb.Controllers
         public ActionResult Suggest(string term)
         {
             return null;
-        }
-
-        private async void map()
-        {
-            // Take advantage of built-in Point of Interest groups
-            var list = PoiEntityGroups.NightLife();
-            list.Add(PoiEntityTypes.BarOrPub);
-
-            // Build your filter list from the group.
-            var filter = PoiEntityGroups.BuildFilter(list);
-
-            var client = new SpatialDataClient("AkKZJ3NHO_6rRvfowxwcQTLNg7k68neuxQNxN2zMzsgwBZgHICjQUmS70CRRES4D");
-
-            // All Bing results are in Kilometers, but convert them to Miles with our built-in conversion helper.
-            var results = await client.Find<PointOfInterest>("EuropePOI", "Jernbanetorget 1, Oslo, Norway", client.ConvertMiToKm(3), filter, top: 10);
         }
     }
 }

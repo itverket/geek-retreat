@@ -12,15 +12,17 @@ eval('var project = ' + fs.readFileSync('./project.json'));
 
 gulp.task('copy', ['clean'], function () {
     var bower = {
-        "bootstrap": "bootstrap/dist/**/*.{js,map,css,ttf,svg,woff,eot}"
+        "bootstrap": "bootstrap/dist/**/*.{js,map,css,ttf,svg,woff,eot}",
+        "pagerjs": "pagerjs/dist/*.{js,css}",
+        "knockout": "knockout/dist/knockout.js",
+        "jquery": "jquery/dist/*.{js, min.js}"
     }
 
-    for (var destinationDir in bower)
-    {
-        gulp.src('./bower_components/' + bower.bootstrap).pipe(gulp.dest('./' + project.webroot + '/lib/' + destinationDir))
+    for (var destinationDir in bower) {
+        gulp.src('./bower_components/' + bower[destinationDir]).pipe(gulp.dest('./' + project.webroot + '/lib/' + destinationDir));
     }
 });
 
 gulp.task('clean', function (callback) {
-    rimraf('./' + project.webroot + '/lib/', callback)
+    rimraf('./' + project.webroot + '/lib/', callback);
 });

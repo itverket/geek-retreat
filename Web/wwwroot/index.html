@@ -1,0 +1,90 @@
+﻿<!doctype html>
+<html>
+<head>
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div style="padding-top: 30px;">
+        <div data-bind="page: {id: 'start', title: 'Geek Retreat 2015'}" style="display: none">
+            <div class="">
+                <div class="jumbotron">
+                    <div class="container">
+                        <h1>Geek Retreat 2015</h1>
+                    </div>
+
+                    <div class="container">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-static" placeholder="Query" data-bind="value: Criteria.Query">
+                            </div>
+                            <button type="button" class="btn btn-primary" data-bind="click: simpleSearch">Search</button>
+                        </div>
+                        <div data-bind="with: Criteria">
+                            <div data-bind="text: previousSearchValues"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div data-bind="foreach: SearchResult.ResultList">
+                        <div data-bind="template: { name: 'tweet-template', data: $data }"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/jquery-ui.min.js"></script>
+    <!--<script src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.0.3/bootstrap.min.js"></script>-->
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/knockout/knockout.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <script src="/lib/pagerjs/pager.min.js"></script>
+    <script src="/externalScripts/knockout.viewmodel.min.js"></script>
+    <script src="viewmodels.js"></script>
+    <script type="text/html" id="tweet-template">
+        <div class="col-xs-12 col-sm-6 col-lg-4">
+            <div class="caption">
+                <div class="panel panel-info">
+                    <div class="panel-heading" data-bind="click: $root.simpleSearch">
+                        <h3 class="panel-title">@<span data-bind="text: getDocumentProperty('Username')"></span></h3>
+                    </div>
+                    <div class="panel-body">
+                        <p data-bind="text: getDocumentProperty('TweetMessage')"></p>
+                        <p data-bind="text: getDocumentProperty('Retweets')"></p>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td>Retweet count: <span data-bind="text: getDocumentProperty('RetweetCount')"></span></td>
+                            <td>Created: <span data-bind="text: getDocumentProperty('CreatedAt')"></span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/javascript">
+    // Set up main structure of model. Dont need to specify how elements in ResultList look like
+    // This will be done when we get the list of tweets, using updateFromModel.
+    var mainModel = {
+        Criteria : {
+            Username: "",
+            Query: ""
+        },
+        SearchResult: {
+            ResultList: []
+        }
+    };
+
+    var viewModel = createTweetrSearchViewModel(mainModel);
+    pager.extendWithPage(viewModel);
+    ko.applyBindings(viewModel);
+
+    // start pager.js
+    pager.start();
+    </script>
+</body>
+</html>
