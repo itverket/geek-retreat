@@ -7,7 +7,7 @@
 }
 <div class="container">
     <div class="bs-docs-section">
-        <div class="col-xl-12">
+        <div class="col-lg-12">
             <div class="page-header">
                 <h1 id="page-title">Geek Retreat 2015</h1>
             </div>
@@ -15,7 +15,7 @@
         @if (@ViewBag.errorMessage != null)
             {
             <div class="row">
-                <div class="col-xl-12">
+                <div class="col-lg-12">
                     <div class="alert alert-dismissible alert-error">
                         <button type="button" class="close" data-dismiss="alert">×</button>
                         <h4>Error!</h4>
@@ -28,7 +28,7 @@
         {
             <div class="row">
                 <div class="container">
-                    <div class="jumbotron col-xl-6">
+                    <div class="jumbotron col-lg-6">
                         <h1>Geek Search</h1>
                         <form action="/Home/Search" method="get" id="search-form">
                             <fieldset>
@@ -57,7 +57,7 @@
                         </form>
                         <a href="#" onclick="document.getElementById('query').value = null; document.getElementById('sort').value = null; document.getElementById('filter').value = null; document.getElementById('hashTags').value = null; document.getElementById('username').value = null; document.getElementById('retweetCountFrom').value = null; document.getElementById('retweetCountTo').value = null; document.forms[0].submit(); return false;" class="btn btn-default btn-lg btn-block">Clear All</a>
                     </div>
-                    <div class="jumbotron col-xl-6">
+                    <div class="jumbotron col-lg-6">
                         <h1>Active filters</h1>
                         @if (!string.IsNullOrEmpty(ViewBag.hashTags))
                         {
@@ -104,31 +104,61 @@
                                 </div>
                             </nav>
                         }
-                        @if (ViewBag.filter == "weather")
+                        @if (ViewBag.filter == "oslo")
                         {
                             <nav class="navbar navbar-default">
                                 <div class="container-fluid">
                                     <div class="navbar-header">
-                                        <a class="navbar-brand" href="#">weather </a>
+                                        <a class="navbar-brand" href="#">in Oslo </a>
                                     </div>
                                     <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-2">
                                         <ul class="nav navbar-nav">
-                                            <li class="active"><a href="#" onclick="document.getElementById('filter').value = null; document.forms[0].submit(); return false;">Remove Weather</a></li>
+                                            <li class="active"><a href="#" onclick="document.getElementById('filter').value = null; document.forms[0].submit(); return false;">Remove filter</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </nav>
                         }
-                        @if (ViewBag.filter == "hashTags")
+                        @if (ViewBag.filter == "cope")
                         {
                             <nav class="navbar navbar-default">
                                 <div class="container-fluid">
                                     <div class="navbar-header">
-                                        <a class="navbar-brand" href="#">hashTags </a>
+                                        <a class="navbar-brand" href="#">in Copenhagen </a>
                                     </div>
                                     <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-2">
                                         <ul class="nav navbar-nav">
-                                            <li class="active"><a href="#" onclick="document.getElementById('filter').value = null; document.forms[0].submit(); return false;">Remove Hash Tags</a></li>
+                                            <li class="active"><a href="#" onclick="document.getElementById('filter').value = null; document.forms[0].submit(); return false;">Remove filter</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                        }
+                        @if (ViewBag.filter == "goth")
+                        {
+                            <nav class="navbar navbar-default">
+                                <div class="container-fluid">
+                                    <div class="navbar-header">
+                                        <a class="navbar-brand" href="#">in Gothenburg </a>
+                                    </div>
+                                    <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-2">
+                                        <ul class="nav navbar-nav">
+                                            <li class="active"><a href="#" onclick="document.getElementById('filter').value = null; document.forms[0].submit(); return false;">Remove filter</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                        }
+                        @if (ViewBag.filter == "asga")
+                        {
+                            <nav class="navbar navbar-default">
+                                <div class="container-fluid">
+                                    <div class="navbar-header">
+                                        <a class="navbar-brand" href="#">in Asgardstrand </a>
+                                    </div>
+                                    <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-2">
+                                        <ul class="nav navbar-nav">
+                                            <li class="active"><a href="#" onclick="document.getElementById('filter').value = null; document.forms[0].submit(); return false;">Remove filter</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -145,7 +175,7 @@
 
 
                 <div class="bs-docs-section">
-                    <div class="col-xl-12">
+                    <div class="col-lg-12">
                         <div class="page-header">
                             <h1 id="searchresults">Search Results (<a href="#" onclick="document.getElementById('skip').value = 0; document.getElementById('top').value = 10; document.forms[0].submit(); return false;">10</a> / <a href="#" onclick="document.getElementById('skip').value = 0; document.getElementById('top').value = 25; document.forms[0].submit(); return false;">25</a> / <a href="#" onclick="document.getElementById('skip').value = 0; document.getElementById('top').value = 50; document.forms[0].submit(); return false;">50</a> / <a href="#" onclick="document.getElementById('skip').value = 0; document.getElementById('top').value = 100; document.forms[0].submit(); return false;">100</a>)</h1>
                         </div>
@@ -153,7 +183,7 @@
                 </div>
                 <h3>Found <span class="badge large">@Model.Count</span> tweets. Showing tweets @ViewBag.skip to @Math.Min(Model.Count.Value, (ViewBag.skip + ViewBag.top))</h3>
                 <div class="bs-docs-section">
-                    <div class="col-xl-12">
+                    <div class="col-lg-12">
                         <ul class="pagination pagination-lg">
                             <li><a href="#" onclick="document.getElementById('skip').value = 0; document.getElementById('top').value = @ViewBag.top; document.forms[0].submit(); return fase;">«</a></li>
                             @for (var page = currentPage; page <= pages; page++)
@@ -171,8 +201,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-12">
-                        <div class="col-xl-3">
+                    <div class="col-lg-12">
+                        <div class="col-lg-3">
                             <div class="bs-component">
                                 <h2 id="facets">
                                     Facets (<a href="#" onclick="document.getElementById('retweetCountFrom').value = null; document.getElementById('retweetCountTo').value = null; document.getElementById('hashTags').value = null; document.forms[0].submit(); return false;">Clear</a>)
@@ -208,7 +238,7 @@
                                     }
                             </div>
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-lg-6">
                             <div class="bs-component">
                                 <h2 id="tweets">Tweets</h2>
                                 @{ var rank = ViewBag.skip; }
@@ -224,7 +254,7 @@
                                 }
                             </div>
                         </div>
-                        <div class="col-xl-3">
+                        <div class="col-lg-3">
                             <div class="bs-component">
                                 <h2 id="tweets">Filters</h2>
 
@@ -235,12 +265,12 @@
                                     <div class="panel-body">
                                         <ul class="nav nav-pills nav-stacked">
                                             <li id="score1" class="active"><a href="#" onclick="document.getElementById('scoringProfile').value = null; document.forms[0].submit(); return false;">none</a></li>
-                                            <li id="score2" ><a href="#" onclick="document.getElementById('scoringProfile').value = 'FreshGeeks'; document.getElementById('scoringParameter').value = null; document.forms[0].submit(); return false;">Fresh Geeks</a></li>
-                                            <li id="score3" ><a href="#" onclick="document.getElementById('scoringProfile').value = 'GeeklyNeighbours'; document.getElementById('scoringParameter').value = 'clientLocation:57.702061,11.753603'; document.forms[0].submit(); return false;">Geeks Near Gothenburg</a></li>
-                                            <li id="score4" ><a href="#" onclick="document.getElementById('scoringProfile').value = 'GeeklyNeighbours'; document.getElementById('scoringParameter').value = 'clientLocation:55.6713108,12.5258197'; document.forms[0].submit(); return false;">Geeks Near Copenhagen</a></li>
-                                            <li id="score5" ><a href="#" onclick="document.getElementById('scoringProfile').value = 'GeeklyNeighbours'; document.getElementById('scoringParameter').value = 'clientLocation:59.8939225,10.7150777'; document.forms[0].submit(); return false;">Geeks Near Oslo</a></li>
-                                            <li id="score6" ><a href="#" onclick="document.getElementById('scoringProfile').value = 'GeeklyNeighbours'; document.getElementById('scoringParameter').value = 'clientLocation:59.3500386,10.477919'; document.forms[0].submit(); return false;">Geeks Near Åsgårdstrand</a></li>
-                                            <li id="score7" ><a href="#" onclick="document.getElementById('scoringProfile').value = 'PopularGeeks'; document.getElementById('scoringParameter').value = null; document.forms[0].submit(); return false;">Popular Geeks</a></li>
+                                            <li id="score2"><a href="#" onclick="document.getElementById('scoringProfile').value = 'FreshGeeks'; document.getElementById('scoringParameter').value = null; document.forms[0].submit(); return false;">Fresh Geeks</a></li>
+                                            <li id="score3"><a href="#" onclick="document.getElementById('scoringProfile').value = 'GeeklyNeighbours'; document.getElementById('scoringParameter').value = 'clientLocation:10.7150777,59.8939225'; document.forms[0].submit(); return false;">Geeks Near Oslo</a></li>
+                                            <li id="score4"><a href="#" onclick="document.getElementById('scoringProfile').value = 'GeeklyNeighbours'; document.getElementById('scoringParameter').value = 'clientLocation:12.5258197,55.6713108'; document.forms[0].submit(); return false;">Geeks Near Copenhagen</a></li>
+                                            <li id="score5"><a href="#" onclick="document.getElementById('scoringProfile').value = 'GeeklyNeighbours'; document.getElementById('scoringParameter').value = 'clientLocation:11.753603,57.702061'; document.forms[0].submit(); return false;">Geeks Near Gothenburg</a></li>
+                                            <li id="score6"><a href="#" onclick="document.getElementById('scoringProfile').value = 'GeeklyNeighbours'; document.getElementById('scoringParameter').value = 'clientLocation:10.477919,59.3500386'; document.forms[0].submit(); return false;">Geeks Near Åsgårdstrand</a></li>
+                                            <li id="score7"><a href="#" onclick="document.getElementById('scoringProfile').value = 'PopularGeeks'; document.getElementById('scoringParameter').value = null; document.forms[0].submit(); return false;">Popular Geeks</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -252,8 +282,8 @@
                                     <div class="panel-body">
                                         <ul class="nav nav-pills nav-stacked">
                                             <li class="active"><a href="#" onclick="document.getElementById('sort').value = null; document.forms[0].submit(); return false;">by relevance</a></li>
-                                            <li><a href="#" onclick="document.getElementById('sort').value = 'CreatedAt'; document.forms[0].submit(); return false;">by date</a></li>
-                                            <li><a href="#" onclick="document.getElementById('sort').value = 'RetweetCount'; document.forms[0].submit(); return false;">by retweet count</a></li>
+                                            <li><a href="#" onclick="document.getElementById('sort').value = 'createdAt'; document.forms[0].submit(); return false;">by date</a></li>
+                                            <li><a href="#" onclick="document.getElementById('sort').value = 'retweetCount'; document.forms[0].submit(); return false;">by retweet count</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -263,10 +293,11 @@
                                     </div>
                                     <div class="panel-body">
                                         <ul class="nav nav-pills nav-stacked">
-                                            <li class="active"><a href="#" onclick="document.getElementById('filter').value = null; document.forms[0].submit(); return false;">default</a></li>
-                                            <li><a href="#" onclick="document.getElementById('filter').value = 'weather'; document.forms[0].submit(); return false;">with weather</a></li>
-                                            <li><a href="#" onclick="document.getElementById('filter').value = 'hashTags'; document.forms[0].submit(); return false;">with hashtags</a></li>
-                                            <li><a href="#" onclick="document.getElementById('filter').value = null; document.getElementById('hashTags').value = null; document.getElementById('username').value = null; document.getElementById('retweetCountFrom').value = null; document.getElementById('retweetCountTo').value = null; document.forms[0].submit(); return false;">clear all</a></li>
+                                            <li><a href="#" onclick="document.getElementById('filter').value = 'oslo'; document.forms[0].submit(); return false;">in Oslo</a></li>
+                                            <li><a href="#" onclick="document.getElementById('filter').value = 'cope'; document.forms[0].submit(); return false;">in Copenhagen</a></li>
+                                            <li><a href="#" onclick="document.getElementById('filter').value = 'goth'; document.forms[0].submit(); return false;">in Gothenborg</a></li>
+                                            <li><a href="#" onclick="document.getElementById('filter').value = 'asga'; document.forms[0].submit(); return false;">in Asgardstrand</a></li>
+
                                         </ul>
                                     </div>
                                 </div>

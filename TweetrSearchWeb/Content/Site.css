@@ -13,7 +13,7 @@
 input,
 select,
 textarea {
-    max-width: 540px;
+    max-width: 310px;
 }
 
 /* preserve newline in tweet messages */
@@ -40,4 +40,7 @@ div.bs-component {
 .badge.large {
     font-size: 1em;
     vertical-align: middle
+}
+.jumbotron {
+    font-size: 0.8em;
 }

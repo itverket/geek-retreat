@@ -47,28 +47,24 @@ namespace SearchIndexWorker
         {
             var freshnessScoringFunction = new FreshnessScoringFunction
             {
-                Boost = 2.5,
+                Boost = 10,
                 FieldName = "CreatedAt",
                 Parameters = new FreshnessScoringParameters(new TimeSpan(7, 0, 0)),
+                Interpolation = ScoringFunctionInterpolation.Quadratic
             };
 
-            var geekScoringFunction = new TagScoringFunction
-            {
-                Boost = 10,
-                FieldName = "TweetMessage",
-                Parameters = new TagScoringParameters("geekScore")
-            };
             var distanceScoringFunction = new DistanceScoringFunction
             {
-                Boost = 2.5,
+                Boost = 10,
                 FieldName = "TweetCoordinates",
-                Parameters = new DistanceScoringParameters("clientLocation", 100)
+                Parameters = new DistanceScoringParameters("clientLocation", 3)
             };
             var retweetCountScoringFunction = new MagnitudeScoringFunction
             {
-                Boost = 2.5,
+                Boost = 10,
                 FieldName = "RetweetCount",
-                Parameters = new MagnitudeScoringParameters(10, 100000)
+                Parameters = new MagnitudeScoringParameters(10, 1000),
+                Interpolation = ScoringFunctionInterpolation.Logarithmic
             };
 
             var freshGeeksProfile = new ScoringProfile
@@ -76,18 +72,16 @@ namespace SearchIndexWorker
                 Name = "FreshGeeks",
                 Functions = new List<ScoringFunction>
                 {
-                    freshnessScoringFunction,
-                    geekScoringFunction,
+                    freshnessScoringFunction
 
-                }
+                },
             };
             var neighbourGeeksProfile = new ScoringProfile
             {
                 Name = "GeeklyNeighbours",
                 Functions = new List<ScoringFunction>
                 {
-                    distanceScoringFunction,
-                    geekScoringFunction,
+                    distanceScoringFunction
                 }
             };
             var popularGeeksProfile = new ScoringProfile
@@ -95,8 +89,7 @@ namespace SearchIndexWorker
                 Name = "PopularGeeks",
                 Functions = new List<ScoringFunction>
                 {
-                    retweetCountScoringFunction,
-                    geekScoringFunction
+                    retweetCountScoringFunction
                 }
             };
 
