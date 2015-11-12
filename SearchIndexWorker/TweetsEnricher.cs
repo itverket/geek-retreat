@@ -4,6 +4,7 @@ using System.Linq;
 using Entities.Twitter.SearchIndex;
 using Entities.Twitter.Tweet;
 using WeatherUndergroundService.Clients;
+using Coordinate = Entities.Twitter.SearchIndex.Coordinate;
 
 
 namespace SearchIndexWorker
@@ -19,7 +20,7 @@ namespace SearchIndexWorker
                 Date = tweet.CreatedAt.ToShortDateString(),
                 Username = tweet.User.ScreenName,
                 TweetMessage = tweet.Text,
-                TweetCoordinates = tweet.Coordinates,
+                TweetCoordinates = new Coordinate{ coordinates = tweet.Coordinates.Coordinates, type = tweet.Coordinates.Type},
                 RetweetCount = tweet.RetweetCount ?? 0,
                 HashTags = tweet.Entities.Hashtags.Select(h => h.Text).ToList(),
                 Urls = tweet.Entities.Urls.Select(u => u.ExpandedUrl).ToList()
@@ -38,7 +39,7 @@ namespace SearchIndexWorker
                     SetFilterableTemperature(tweet);
                     continue;
                 }
-                var historicResult = HistoricWeather.GetByCoordinates((double)tweet.TweetCoordinates.Coordinates[0], (double)tweet.TweetCoordinates.Coordinates[1], tweet.CreatedAt.Value.Add(new TimeSpan(0, -6, 0)), tweet.CreatedAt.Value.Add(new TimeSpan(0, 6, 0)));
+                var historicResult = HistoricWeather.GetByCoordinates((double)tweet.TweetCoordinates.coordinates[0], (double)tweet.TweetCoordinates.coordinates[1], tweet.CreatedAt.Value.Add(new TimeSpan(0, -6, 0)), tweet.CreatedAt.Value.Add(new TimeSpan(0, 6, 0)));
                 var bestWeather = historicResult.OrderBy(weather => Math.Abs((weather.Date - tweet.CreatedAt.Value).Ticks)).FirstOrDefault();
                 if (bestWeather == null)
                 {

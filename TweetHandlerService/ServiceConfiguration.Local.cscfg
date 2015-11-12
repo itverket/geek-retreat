@@ -17,12 +17,4 @@
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
     </ConfigurationSettings>
   </Role>
-  <Role name="TweetrSearchWeb">
-    <Instances count="1" />
-    <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
-      <Setting name="SearchServiceApiKey" value="C10F3A0A73E30B5AB9483413EF846E97" />
-      <Setting name="SearchServiceName" value="tjsearch" />
-    </ConfigurationSettings>
-  </Role>
 </ServiceConfiguration>

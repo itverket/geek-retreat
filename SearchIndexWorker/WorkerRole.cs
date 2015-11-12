@@ -93,7 +93,9 @@ namespace SearchIndexWorker
             foreach (var msg in _searchIndexQueue.GetMessages(MessageIndexCount).Where(msg => msg != null))
             {
                 var messageString = msg.AsString;
-                tweets.Add(JsonConvert.DeserializeObject<Tweet>(messageString));
+                var tweet = JsonConvert.DeserializeObject<Tweet>(messageString);
+                if (tweet.Coordinates == null) continue;
+                tweets.Add(tweet);
                 _searchIndexQueue.DeleteMessage(msg);
             }
             return tweets;
@@ -103,7 +105,7 @@ namespace SearchIndexWorker
         {
             if (_searchIndexClient == null)
             {
-                _searchIndexClient = _searchServiceClient.Indexes.GetClient("tweets");
+                _searchIndexClient = _searchServiceClient.Indexes.GetClient("asp5tweets");
             }
 
             var enrichedTweets = _tweetsEnricher.FlattenAndEnrichTweets(tweets);

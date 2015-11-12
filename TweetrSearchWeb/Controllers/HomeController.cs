@@ -20,7 +20,7 @@ namespace TweetrSearchWeb.Controllers
         private static readonly SearchServiceClient ServiceClient = new SearchServiceClient(SearchServiceName,
             new SearchCredentials(ApiKey));
 
-        private readonly SearchIndexClient _indexClient = ServiceClient.Indexes.GetClient("tweets");
+        private readonly SearchIndexClient _indexClient = ServiceClient.Indexes.GetClient("asp5tweets");
 
         public ActionResult Index()
         {
@@ -46,9 +46,9 @@ namespace TweetrSearchWeb.Controllers
             {
                 return View("Index", null);
             }
-            if (sort == "retweetCount")
+            if (sort == "RetweetCount")
             {
-                sort = "retweetCount desc";
+                sort = "RetweetCount desc";
             }
 
             var searchParameters = BuildSearchParameters(retweetCountFrom, retweetCountTo, sort, filter, hashTags,username, top, skip, scoringProfile, scoringParameter);
@@ -64,8 +64,8 @@ namespace TweetrSearchWeb.Controllers
                 Top = top,
                 Facets = new List<string>
                 {
-                    "retweetCount,values:10 | 25 | 50 | 100 | 250 | 1000",
-                    "hashTags",
+                    "RetweetCount,values:10 | 25 | 50 | 100 | 250 | 1000",
+                    "HashTags",
                     //"temperature, values:-20 | 0 | 20 | | 40",
                     //"cloudiness, values: 0 | 25 | 50 | 75 | 100"
                 },
@@ -94,35 +94,35 @@ namespace TweetrSearchWeb.Controllers
             var spFilter = string.Empty;
             if (retweetCountFrom.HasValue)
             {
-                spFilter += Any(spFilter) + "retweetCount ge " +
+                spFilter += Any(spFilter) + "RetweetCount ge " +
                             retweetCountFrom.Value.ToString(CultureInfo.InvariantCulture);
             }
 
             if (retweetCountTo.HasValue && retweetCountTo > 0)
             {
-                spFilter += Any(spFilter) + "retweetCount le " +
+                spFilter += Any(spFilter) + "RetweetCount le " +
                             retweetCountTo.Value.ToString(CultureInfo.InvariantCulture);
             }
 
             if (!IsNullOrEmpty(hashTags))
             {
-                spFilter += Any(spFilter) + "hashTags/any (h: h eq '" + hashTags + "')";
+                spFilter += Any(spFilter) + "HashTags/any (h: h eq '" + hashTags + "')";
             }
 
             if (!IsNullOrEmpty(username))
             {
-                spFilter += Any(spFilter) + "username eq '" + username + "'";
+                spFilter += Any(spFilter) + "Username eq '" + username + "'";
             }
 
             if (!IsNullOrEmpty(filter))
             {
                 if (filter == "weather")
                 {
-                    spFilter += Any(spFilter) + "temperature gt -100";
+                    spFilter += Any(spFilter) + "Temperature gt -100";
                 }
                 if (filter == "hashTags" && IsNullOrEmpty(hashTags))
                 {
-                    spFilter += Any(spFilter) + "hashTags/any()";
+                    spFilter += Any(spFilter) + "HashTags/any()";
                 }
             }
             return spFilter;

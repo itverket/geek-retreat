@@ -17,12 +17,4 @@
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=tjstorage;AccountKey=WbEABEPP8AiaoTzso1jzeQNhNO1Eu0PaVW7WQ5Zp84Cosf0mpn7+tReAyKmtEjvf0qsAZgKXdRN4POVECZZagQ==;BlobEndpoint=https://tjstorage.blob.core.windows.net/;TableEndpoint=https://tjstorage.table.core.windows.net/;QueueEndpoint=https://tjstorage.queue.core.windows.net/;FileEndpoint=https://tjstorage.file.core.windows.net/" />
     </ConfigurationSettings>
   </Role>
-  <Role name="TweetrSearchWeb">
-    <Instances count="1" />
-    <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=tjstorage;AccountKey=WbEABEPP8AiaoTzso1jzeQNhNO1Eu0PaVW7WQ5Zp84Cosf0mpn7+tReAyKmtEjvf0qsAZgKXdRN4POVECZZagQ==;BlobEndpoint=https://tjstorage.blob.core.windows.net/;TableEndpoint=https://tjstorage.table.core.windows.net/;QueueEndpoint=https://tjstorage.queue.core.windows.net/;FileEndpoint=https://tjstorage.file.core.windows.net/" />
-      <Setting name="SearchServiceApiKey" value="C10F3A0A73E30B5AB9483413EF846E97" />
-      <Setting name="SearchServiceName" value="tjsearch" />
-    </ConfigurationSettings>
-  </Role>
 </ServiceConfiguration>

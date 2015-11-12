@@ -53,14 +53,6 @@
       <RoleName>TweetEventHandler</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
-    <ProjectReference Include="..\TweetrSearchWeb\TweetrSearchWeb.csproj">
-      <Name>TweetrSearchWeb</Name>
-      <Project>{abc712bb-e55f-4764-98f8-8e10a248c190}</Project>
-      <Private>True</Private>
-      <RoleType>Web</RoleType>
-      <RoleName>TweetrSearchWeb</RoleName>
-      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Profiles" />

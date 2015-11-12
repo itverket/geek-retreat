@@ -4,6 +4,11 @@ using Entities.Twitter.Tweet;
 
 namespace Entities.Twitter.SearchIndex
 {
+    public class Coordinate
+    {
+        public decimal[] coordinates { get; set; }
+        public string type { get; set; }
+    }
     public class FlattendTweet
     {
         public string TweetId { get; set; }
