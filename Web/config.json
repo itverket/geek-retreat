@@ -1,0 +1,7 @@
+﻿{
+  "AppSettings": {
+    "SearchServiceName": "SERVICE_NAME",
+    "SearchServiceApiKey": "API_KEY",
+    "TweetIndexName": "tweets"
+  }
+}
