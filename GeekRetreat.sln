@@ -43,6 +43,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureManagement", "AzureMan
 EndProject
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "TweetrSearchWebService", "TweetrSearchWebService\TweetrSearchWebService.ccproj", "{CE09B34B-2035-4EC4-9D64-78203420813F}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Web", "Web\Web.xproj", "{BA0AA059-160E-4A7B-8591-08019E884A43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{CE09B34B-2035-4EC4-9D64-78203420813F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE09B34B-2035-4EC4-9D64-78203420813F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE09B34B-2035-4EC4-9D64-78203420813F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA0AA059-160E-4A7B-8591-08019E884A43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA0AA059-160E-4A7B-8591-08019E884A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA0AA059-160E-4A7B-8591-08019E884A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA0AA059-160E-4A7B-8591-08019E884A43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

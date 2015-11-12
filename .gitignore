@@ -6,10 +6,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-TweetHandlerOut/
-TweetPublisherOut/
-HandlerOut/
-PublisherOut/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -182,6 +178,7 @@ ClientBin/
 *.pfx
 *.publishsettings
 node_modules/
+bower_components/
 orleans.codegen.cs
 
 # RIA/Silverlight projects
