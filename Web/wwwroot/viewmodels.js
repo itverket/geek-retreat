@@ -75,7 +75,11 @@ function SearchCriteriaViewModel(self) {
 }
 
 function SearchResultViewModel(self) {
-    
+    self.hashTagsExist = ko.observable(false);
+
+    self.Facets.HashTags.subscribe(function() {
+        self.hashTagsExist(self.Facets.HashTags().length > 0);
+    });
 }
 
 function TweetViewModel(self) {
