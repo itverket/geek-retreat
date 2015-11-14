@@ -18,7 +18,7 @@
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-static" placeholder="Query" data-bind="value: Criteria.Query">
                             </div>
-                            <button type="button" class="btn btn-primary" data-bind="click: simpleSearch">Search</button>
+                                <button type="button" class="btn btn-primary" data-bind="click: simpleSearch">Search</button>
                         </div>
                         <div data-bind="with: Criteria">
                             <div data-bind="text: previousSearchValues"></div>
@@ -28,14 +28,37 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div data-bind="foreach: SearchResult.Tweets">
-                        <div data-bind="template: { name: 'tweet-template', data: $data }"></div>
+                <div class="bs-docs-container container">
+                    <div class="row">
+                        <div class="hidden-xs col-sm-3 col-md-2 col-lg-2" data-bind="with: SearchResult">
+                             <nav class="bs-docs-sidebar hidden-print affix">
+                                 <ul class="nav bs-docs-sidenav">
+                                     <li class="" style="display: none;" data-bind="visible: hashTagsExist()">
+                                         <h3>Hashtags</h3>
+                                         <ul class="nav" data-bind="foreach: Facets.HashTags">
+                                             <li class=""><a href="#"><span data-bind="text: Value"></span> (<span data-bind="text: Count"></span>)</a></li>
+                                         </ul>
+                                     </li>
+                                 </ul>
+                            </nav>
+                        </div>
+                        <!--<div class="col-sm-3" role="complementary">
+                            <nav class="bs-docs-sidebar">
+                                <ul class="nav bs-docs-sidenav" data-bind="foreach: SearchResult.Facets.HashTags">
+                                    <li><span data-bind="text: Value"></span>: (<span data-bind="text: Count"></span>)</li>
+                                </ul>
+                            </nav>
+                        </div>-->
+                        <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10" role="main">
+                            <div data-bind="foreach: SearchResult.Tweets">
+                                <div data-bind="template: { name: 'tweet-template', data: $data }"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-       
+
     </div>
 
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js"></script>
@@ -70,12 +93,13 @@
     </script>
 
     <script type="text/javascript">
-    // Set up main structure of model. Dont need to specify how elements in ResultList look like
-    // This will be done when we get the list of tweets, using updateFromModel.
+        // Set up main structure of model. Dont need to specify how elements in ResultList look like
+        // This will be done when we get the list of tweets, using updateFromModel.
         var mainModel = {
             Criteria: {
                 Username: "",
-                Query: ""
+                Query: "",
+                HashTag: ""
             },
             SearchResult: {
                 Facets: {
@@ -83,15 +107,15 @@
                 },
                 Tweets: [],
                 Count: ""
-        }
-    };
+            }
+        };
 
-    var viewModel = createTweetrSearchViewModel(mainModel);
-    pager.extendWithPage(viewModel);
-    ko.applyBindings(viewModel);
+        var viewModel = createTweetrSearchViewModel(mainModel);
+        pager.extendWithPage(viewModel);
+        ko.applyBindings(viewModel);
 
-    // start pager.js
-    pager.start();
+        // start pager.js
+        pager.start();
     </script>
 </body>
 </html>
